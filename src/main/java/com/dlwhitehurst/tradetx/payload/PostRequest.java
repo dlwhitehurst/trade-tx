@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.payload;
+package com.dlwhitehurst.tradetx.payload;
 
 import lombok.Data;
 

@@ -6,12 +6,12 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.controller;
+package com.dlwhitehurst.tradetx.controller;
 
-import com.dlwhitehurst.slimboot.payload.PagedResponse;
-import com.dlwhitehurst.slimboot.model.Contact;
-import com.dlwhitehurst.slimboot.service.ContactService;
-import com.dlwhitehurst.slimboot.utils.AppConstants;
+import com.dlwhitehurst.tradetx.payload.PagedResponse;
+import com.dlwhitehurst.tradetx.model.Transaction;
+import com.dlwhitehurst.tradetx.service.TransactionService;
+import com.dlwhitehurst.tradetx.utils.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/contacts")
-public class ContactController {
+@RequestMapping("/api/transactions")
+public class TransactionController {
 
     @Autowired
-    private ContactService contactService;
+    private TransactionService transactionService;
 
     @GetMapping
-    public ResponseEntity<PagedResponse<Contact>> getContacts(
+    public ResponseEntity<PagedResponse<Transaction>> getTransactions(
             @RequestParam(value = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) Integer size) {
 
-        PagedResponse<Contact> response = contactService.getAllContacts(page, size);
+        PagedResponse<Transaction> response = transactionService.getAllTransactions(page, size);
 
         return new ResponseEntity< >(response, HttpStatus.OK);
     }

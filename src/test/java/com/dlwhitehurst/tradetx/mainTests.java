@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.slimboot;
+package com.dlwhitehurst.tradetx;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

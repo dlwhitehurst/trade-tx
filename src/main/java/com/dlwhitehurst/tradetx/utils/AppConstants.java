@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.utils;
+package com.dlwhitehurst.tradetx.utils;
 
 public class AppConstants {
 	public static final String DEFAULT_PAGE_NUMBER = "0";

@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.trade-tx;
+package com.dlwhitehurst.tradetx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

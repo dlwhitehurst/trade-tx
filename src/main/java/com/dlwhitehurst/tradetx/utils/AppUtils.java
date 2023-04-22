@@ -6,9 +6,9 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.utils;
+package com.dlwhitehurst.tradetx.utils;
 
-import com.dlwhitehurst.slimboot.exception.ApiException;
+import com.dlwhitehurst.tradetx.exception.ApiException;
 import org.springframework.http.HttpStatus;
 
 public class AppUtils {

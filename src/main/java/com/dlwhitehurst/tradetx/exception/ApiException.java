@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.exception;
+package com.dlwhitehurst.tradetx.exception;
 
 import org.springframework.http.HttpStatus;
 

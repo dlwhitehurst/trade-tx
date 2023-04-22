@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.trade-tx.model;
+package com.dlwhitehurst.tradetx.model;
 
 import lombok.Data;
 
