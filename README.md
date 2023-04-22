@@ -37,11 +37,11 @@ The app provides the following CRUD APIs.
 
 ### Contact
 
-| Method | Url | Decription | Sample Valid Request Body | 
-| ------ | --- | ---------- | --------------------------- |
-| GET    | /api/contacts    | Get All Contacts | [JSON]($getallcontacts) |
-| POST   | /api/contacts    | Later |  |
-| PUT    | /api/contacts    | Later |  |
+| Method | Url               | Decription                  | Sample Valid Request Body   | 
+| ------ |-------------------|-----------------------------|-----------------------------|
+| GET    | /api/transactions | Get All Transactions        | [JSON]($getalltransactions) |
+| POST   | /api/contacts     | POST a Transaction          |                             |
+| PUT    | /api/contacts     | PUT (Replace) a Transaction |                             |
 
 
 ## Sample JSON 
