@@ -6,7 +6,7 @@
  *
  */
 
-package com.dlwhitehurst.slimboot.model;
+package com.dlwhitehurst.trade-tx.model;
 
 import lombok.Data;
 
@@ -21,8 +21,8 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
-@Table(name = "contacts", uniqueConstraints = { @UniqueConstraint(columnNames = { "entity" }) })
-public class Contact {
+@Table(name = "transactions", uniqueConstraints = { @UniqueConstraint(columnNames = { "entity" }) })
+public class Transaction {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,14 +31,19 @@ public class Contact {
     private Long id;
 
     @NotBlank
-    @Column(name = "entity")
-    private String entity;
+    @Column(name = "date_time")
+    private String datetime;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "amount")
+    private String amount;
 
+    @Column(name = "commission")
+    private String commission;
+
+    @Column(name = "regulatory_fee")
+    private String regfee;
 }
 

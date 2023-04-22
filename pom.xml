@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dlwhitehurst</groupId>
-    <artifactId>slimboot</artifactId>
+    <artifactId>trade-tx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>slimboot</name>
-    <description>Slim API project with Spring Boot</description>
+    <name>trade-tx</name>
+    <description>Securities Trading Transaction API</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
