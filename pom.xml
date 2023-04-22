@@ -87,7 +87,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.dlwhitehurst.slimboot.main</mainClass>
+					<mainClass>com.dlwhitehurst.tradetx.main</mainClass>
 				</configuration>
 				<executions>
 					<execution>

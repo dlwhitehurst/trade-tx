@@ -21,7 +21,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
-@Table(name = "transactions", uniqueConstraints = { @UniqueConstraint(columnNames = { "entity" }) })
+@Table(name = "transactions", uniqueConstraints = { @UniqueConstraint(columnNames = { "date_time" }) })
 public class Transaction {
 
     private static final long serialVersionUID = 1L;
