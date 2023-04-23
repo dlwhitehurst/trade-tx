@@ -4,27 +4,77 @@ USE `trade-tx`;
 
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `balances`;
+CREATE TABLE `balances` (
+    `id`                        bigint(19) unsigned NOT NULL AUTO_INCREMENT,
+    `bal_date`                  varchar(20) NOT NULL,
+    `bal_account`               varchar(32) NOT NULL,
+    `bal_account_value`         varchar(32) NOT NULL,
+    `bal_account_value_prior`   varchar(32) NOT NULL,
+    `bal_cash_value`            varchar(32) NOT NULL,
+    `bal_cash_value_prior`      varchar(32) NOT NULL,
+    `bal_stock_value`           varchar(32) NOT NULL,
+    `bal_stock_value_prior`     varchar(32) NOT NULL,
+    `bal_option_value`          varchar(32) NOT NULL,
+    `bal_option_value_prior`    varchar(32) NOT NULL,
+    `bal_fund_value`            varchar(32) NOT NULL,
+    `bal_fund_value_prior`      varchar(32) NOT NULL,
+    `bal_bond_value`            varchar(32) NOT NULL,
+    `bal_bond_value_prior`      varchar(32) NOT NULL,
+    `bal_trade_available`       varchar(32) NOT NULL,
+    `bal_options_available`     varchar(32) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `balances` WRITE;
+INSERT INTO `balances` (
+    bal_date,
+    bal_account,
+    bal_account_value,
+    bal_account_value_prior,
+    bal_cash_value,
+    bal_cash_value_prior,
+    bal_stock_value,
+    bal_stock_value_prior,
+    bal_option_value,
+    bal_option_value_prior,
+    bal_fund_value,
+    bal_fund_value_prior,
+    bal_bond_value,
+    bal_bond_value_prior,
+    bal_trade_available,
+    bal_options_available) VALUES (
+    '01/01/2000',
+    '1234',
+    '$10,000',
+    '$9,999',
+    '$10,000','$9,999',
+    '$0','$0',
+    '$0','$0',
+    '$0','$0',
+    '$0','$0',
+    '$10,000','$10,000'
+);
+UNLOCK TABLES;
+
 DROP TABLE IF EXISTS `transactions`;
 
 CREATE TABLE `transactions` (
-                            `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
-                            `tx_date` varchar(20) NOT NULL,
-                            `tx_id` varchar(40) NOT NULL,
-                            `tx_description`  varchar(80) NOT NULL,
-                            `tx_quantity` varchar(20) NOT NULL,
-                            `tx_symbol` varchar(60) NOT NULL,
-                            `tx_price` varchar(20) NOT NULL,
-                            `tx_commission` varchar(10) NOT NULL,
-                            `tx_amount`  varchar(20) NOT NULL,
-                            `tx_regulatory_fee`  varchar(10) NOT NULL,
-                            `tx_short_term_rdm_fee`  varchar(10) NOT NULL,
-                            `tx_fund_redemption_fee`  varchar(10) NOT NULL,
-                            `tx_deferred_sales_charge`  varchar(10) NOT NULL,
-                            PRIMARY KEY (`id`)
+    `id`                            bigint(19) unsigned NOT NULL AUTO_INCREMENT,
+    `tx_date`                       varchar(20) NOT NULL,
+    `tx_id`                         varchar(40) NOT NULL,
+    `tx_description`                varchar(80) NOT NULL,
+    `tx_quantity`                   varchar(20) NOT NULL,
+    `tx_symbol`                     varchar(60) NOT NULL,
+    `tx_price`                      varchar(20) NOT NULL,
+    `tx_commission`                 varchar(10) NOT NULL,
+    `tx_amount`                     varchar(20) NOT NULL,
+    `tx_regulatory_fee`             varchar(10) NOT NULL,
+    `tx_short_term_rdm_fee`         varchar(10) NOT NULL,
+    `tx_fund_redemption_fee`        varchar(10) NOT NULL,
+    `tx_deferred_sales_charge`      varchar(10) NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- //DATE,TRANSACTION ID,DESCRIPTION,QUANTITY,SYMBOL,PRICE,COMMISSION,AMOUNT,
---    // REG FEE,SHORT-TERM RDM FEE,FUND REDEMPTION FEE, DEFERRED SALES CHARGE
---    //04/04/2023,49252224461,Sold 80 ERO @ 18.08,80,ERO,18.08,0.00,1446.38,0.02,,,
 
 LOCK TABLES `transactions` WRITE;
 INSERT INTO `transactions` (`tx_date`, `tx_id`,`tx_description`, `tx_quantity`, `tx_symbol`,
