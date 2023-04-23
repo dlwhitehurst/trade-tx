@@ -4,6 +4,41 @@ USE `trade-tx`;
 
 UNLOCK TABLES;
 
+-- ##########################################################################################################
+-- POSITIONS
+-- ##########################################################################################################
+
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE `positions` (
+    `id`                   bigint(19) unsigned NOT NULL AUTO_INCREMENT,
+    `pos_date`             varchar(20) NOT NULL,
+    `pos_symbol`           varchar(20) NOT NULL,
+    `pos_qty`              varchar(20) NOT NULL,
+    `pos_cost`             varchar(20) NOT NULL,
+    `pos_market`           varchar(20) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `positions` WRITE;
+INSERT INTO `positions` (
+    pos_date,
+    pos_symbol,
+    pos_qty,
+    pos_cost,
+    pos_market
+) VALUES (
+    '01/01/2000',
+    'AAPL',
+    '100',
+    '$21,000.00',
+    '$22,322.78'
+);
+UNLOCK TABLES;
+
+-- ##########################################################################################################
+-- BALANCES
+-- ##########################################################################################################
+
 DROP TABLE IF EXISTS `balances`;
 CREATE TABLE `balances` (
     `id`                        bigint(19) unsigned NOT NULL AUTO_INCREMENT,
@@ -56,6 +91,10 @@ INSERT INTO `balances` (
     '$10,000','$10,000'
 );
 UNLOCK TABLES;
+
+-- ##########################################################################################################
+-- TRANSACTIONS
+-- ##########################################################################################################
 
 DROP TABLE IF EXISTS `transactions`;
 
