@@ -21,7 +21,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
-@Table(name = "transactions", uniqueConstraints = { @UniqueConstraint(columnNames = { "date_time" }) })
+@Table(name = "transactions", uniqueConstraints = { @UniqueConstraint(columnNames = { "tx_id" }) })
 public class Transaction {
 
     private static final long serialVersionUID = 1L;
@@ -31,19 +31,46 @@ public class Transaction {
     private Long id;
 
     @NotBlank
-    @Column(name = "date_time")
-    private String datetime;
+    @Column(name = "tx_date")
+    private String txDate;
 
-    @Column(name = "description")
-    private String description;
+    @NotBlank
+    @Column(name = "tx_id")
+    private String txId;
 
-    @Column(name = "amount")
-    private String amount;
+    @Column(name = "tx_description")
+    private String txDescription;
 
-    @Column(name = "commission")
-    private String commission;
+    @Column(name = "tx_quantity")
+    private String txQuantity;
 
-    @Column(name = "regulatory_fee")
-    private String regfee;
+    @Column(name = "tx_symbol")
+    private String txSymbol;
+
+    @Column(name = "tx_price")
+    private String txPrice;
+
+    @Column(name = "tx_commission")
+    private String txCommission;
+
+    @Column(name = "tx_amount")
+    private String txAmount;
+
+    @Column(name = "tx_regulatory_fee")
+    private String txRegFee;
+
+    @Column(name = "tx_short_term_rdm_fee")
+    private String txShortTermRdmFee;
+
+    @Column(name = "tx_fund_redemption_fee")
+    private String txFundRedemptionFee;
+
+    @Column(name = "tx_deferred_sales_charge")
+    private String txDeferredSalesCharge;
+
+    //DATE,TRANSACTION ID,DESCRIPTION,QUANTITY,SYMBOL,PRICE,COMMISSION,AMOUNT,
+    // REG FEE,SHORT-TERM RDM FEE,FUND REDEMPTION FEE, DEFERRED SALES CHARGE
+    //04/04/2023,49252224461,Sold 80 ERO @ 18.08,80,ERO,18.08,0.00,1446.38,0.02,,,
+
 }
 

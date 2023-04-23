@@ -8,35 +8,107 @@
 
 package com.dlwhitehurst.tradetx.controller;
 
-import com.dlwhitehurst.tradetx.payload.PagedResponse;
 import com.dlwhitehurst.tradetx.model.Transaction;
-import com.dlwhitehurst.tradetx.service.TransactionService;
-import com.dlwhitehurst.tradetx.utils.AppConstants;
+import com.dlwhitehurst.tradetx.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/transactions")
+@RequestMapping("/api/v1")
 public class TransactionController {
 
     @Autowired
-    private TransactionService transactionService;
+    TransactionRepository transactionRepository;
 
-    @GetMapping
-    public ResponseEntity<PagedResponse<Transaction>> getTransactions(
-            @RequestParam(value = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) Integer page,
-            @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) Integer size) {
+    @GetMapping("/transactions")
+    public ResponseEntity<List<Transaction>> getAllTransactions() {
+        try {
+            List<Transaction> transactions = new ArrayList<Transaction>();
 
-        PagedResponse<Transaction> response = transactionService.getAllTransactions(page, size);
+            transactionRepository.findAll().forEach(transactions::add);
 
-        return new ResponseEntity< >(response, HttpStatus.OK);
+            if (transactions.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(transactions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // POST method?
+    @GetMapping("/transactions/{id}")
+    public ResponseEntity<Transaction> getTransactionById(@PathVariable("id") long id) {
+        Optional<Transaction> transactionData = transactionRepository.findById(id);
 
+        if (transactionData.isPresent()) {
+            return new ResponseEntity<>(transactionData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/transactions")
+    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
+        try {
+            Transaction _transaction = transactionRepository
+                    .save(transaction);
+            return new ResponseEntity<>(_transaction, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/transactions/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") long id, @RequestBody Transaction transaction) {
+        Optional<Transaction> transactionData = transactionRepository.findById(id);
+
+        if (transactionData.isPresent()) {
+            Transaction _transaction = transactionData.get();
+            _transaction.setId(transaction.getId());
+            _transaction.setTxDate(transaction.getTxDate());
+            _transaction.setTxId(transaction.getTxId());
+            _transaction.setTxDescription(transaction.getTxDescription());
+            _transaction.setTxQuantity(transaction.getTxQuantity());
+            _transaction.setTxSymbol(transaction.getTxSymbol());
+            _transaction.setTxPrice(transaction.getTxPrice());
+            _transaction.setTxCommission(transaction.getTxCommission());
+            _transaction.setTxAmount(transaction.getTxAmount());
+            _transaction.setTxRegFee(transaction.getTxRegFee());
+            _transaction.setTxShortTermRdmFee(transaction.getTxShortTermRdmFee());
+            _transaction.setTxFundRedemptionFee(transaction.getTxFundRedemptionFee());
+            _transaction.setTxDeferredSalesCharge(transaction.getTxDeferredSalesCharge());
+
+            return new ResponseEntity<>(transactionRepository.save(_transaction), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/transactions/{id}")
+    public ResponseEntity<HttpStatus> deleteTransaction(@PathVariable("id") long id) {
+        try {
+            transactionRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/transactions")
+    public ResponseEntity<HttpStatus> deleteAllTransactions() {
+        try {
+            transactionRepository.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 }

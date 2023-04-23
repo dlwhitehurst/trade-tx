@@ -33,21 +33,14 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public PagedResponse<Transaction> getAllTransactions(int page, int size) {
-        AppUtils.validatePageNumberAndSize(page, size);
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, AppConstants.ID);
-
-        Page<Transaction> transactions = transactionRepository.findAll(pageable);
-
-        List<Transaction> content = transactions.getNumberOfElements() == 0 ? Collections.emptyList() : transactions.getContent();
-
-        return new PagedResponse<>(content, transactions.getNumber(), transactions.getSize(), transactions.getTotalElements(),
-                transactions.getTotalPages(), transactions.isLast());
+    public List<Transaction> findAll() {
+        return transactionRepository.findAll();
     }
 
     @Override
-    public Transaction addTransaction(Transaction todo) {
-        return null;
+    public Transaction create(Transaction tx) {
+        transactionRepository.save(tx);
+        return tx;
     }
 
     @Override
@@ -60,8 +53,8 @@ public class TransactionServiceImpl implements TransactionService {
         return null;
     }
 
-//    @Override
-//    public ApiResponse deleteTransaction(Long id) {
-//        return null;
-//    }
+    @Override
+    public Transaction deleteTransaction(Long id) {
+        return null;
+    }
 }

@@ -11,16 +11,18 @@ package com.dlwhitehurst.tradetx.service;
 import com.dlwhitehurst.tradetx.payload.PagedResponse;
 import com.dlwhitehurst.tradetx.model.Transaction;
 
+import java.util.List;
+
 public interface TransactionService {
 
-    PagedResponse<Transaction> getAllTransactions(int page, int size);
+    List<Transaction> findAll();
 
-    Transaction addTransaction(Transaction todo);
+    Transaction create(Transaction todo);
 
     Transaction getTransaction(Long id);
 
     Transaction updateTransaction(Long id, Transaction newTodo);
 
-    //ApiResponse deleteTransaction(Long id);
+    Transaction deleteTransaction(Long id);
 
 }
