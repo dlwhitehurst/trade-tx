@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
-@Table(name = "balances", uniqueConstraints = { @UniqueConstraint(columnNames = { "bal_date" }) })
+@Table(name = "balances", uniqueConstraints = { @UniqueConstraint(columnNames = { "id" }) })
 public class Balance {
 
     private static final long serialVersionUID = 1L;

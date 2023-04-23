@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Optional;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -43,27 +43,27 @@ public class BalanceController {
         }
     }
 
-//    @GetMapping("/balances/{id}")
-//    public ResponseEntity<Balance> getBalanceById(@PathVariable("id") long id) {
-//        Optional<Balance> balanceData = balanceRepository.findById(id);
-//
-//        if (balanceData.isPresent()) {
-//            return new ResponseEntity<>(balanceData.get(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/balances/{id}")
+    public ResponseEntity<Balance> getBalanceById(@PathVariable("id") long id) {
+        Optional<Balance> balanceData = balanceRepository.findById(id);
 
-//    @PostMapping("/balances")
-//    public ResponseEntity<Balance> createBalance(@RequestBody Balance balance) {
-//        try {
-//            Balance _balance = balanceRepository
-//                    .save(balance);
-//            return new ResponseEntity<>(_balance, HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+        if (balanceData.isPresent()) {
+            return new ResponseEntity<>(balanceData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/balances")
+    public ResponseEntity<Balance> createBalance(@RequestBody Balance balance) {
+        try {
+            Balance _balance = balanceRepository
+                    .save(balance);
+            return new ResponseEntity<>(_balance, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 //    @PutMapping("/balances/{id}")
 //    public ResponseEntity<Balance> updateBalance(@PathVariable("id") long id, @RequestBody Balance balance) {
@@ -91,25 +91,25 @@ public class BalanceController {
 //        }
 //    }
 
-//    @DeleteMapping("/balances/{id}")
-//    public ResponseEntity<HttpStatus> deleteBalance(@PathVariable("id") long id) {
-//        try {
-//            balanceRepository.deleteById(id);
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @DeleteMapping("/balances/{id}")
+    public ResponseEntity<HttpStatus> deleteBalance(@PathVariable("id") long id) {
+        try {
+            balanceRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-//    @DeleteMapping("/balances")
-//    public ResponseEntity<HttpStatus> deleteAllBalances() {
-//        try {
-//            balanceRepository.deleteAll();
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//    }
+    @DeleteMapping("/balances")
+    public ResponseEntity<HttpStatus> deleteAllBalances() {
+        try {
+            balanceRepository.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
     
 }
