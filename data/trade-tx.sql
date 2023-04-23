@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `trade-tx`
+CREATE DATABASE IF NOT EXISTS `trade-tx`;
 
 USE `trade-tx`;
 
