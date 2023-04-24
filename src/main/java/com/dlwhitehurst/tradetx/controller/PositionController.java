@@ -19,11 +19,15 @@ public class PositionController {
     PositionRepository positionRepository;
 
     @GetMapping("/positions")
-    public ResponseEntity<List<Position>> getAllPositions() {
+    public ResponseEntity<List<Position>> getAllPositions(@RequestParam(required = false) String symbol) {
         try {
             List<Position> positions = new ArrayList<>();
 
-            positions.addAll(positionRepository.findAll());
+            if (symbol == null) {
+                positions.addAll(positionRepository.findAll());
+            } else {
+                positions.addAll(positionRepository.findAllBySymbol(symbol));
+            }
 
             if (positions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
